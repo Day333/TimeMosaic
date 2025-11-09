@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <meta name="description"
         content="TimeMosaic: Temporal Heterogeneity Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding.">
-  <meta name="keywords" content="TimeMosaic, Time-Series Forecasting, Adaptive Patch, Segment-wise Decoding, Temporal Heterogeneity, Time Series">
+  <meta name="keywords" content="TimeMosaic, Time-Series Forecasting, Adaptive Patch, Segment-wise Decoding, Temporal Heterogeneity">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TimeMosaic: Temporal Heterogeneity Guided Time Series Forecasting</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
@@ -30,20 +29,11 @@
       <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </a>
   </div>
-
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://github.com/dingkuiye">
+      <a class="navbar-item" href="https://github.com/BenchCouncil/TimeMosaic">
         <span class="icon"><i class="fas fa-home"></i></span>
       </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">More Projects</a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://github.com/dingkuiye/CondTSF">CondTSF</a>
-          <a class="navbar-item" href="https://github.com/dingkuiye/NAR-Patch-Prompt">NAR-Patch-Prompt</a>
-          <a class="navbar-item" href="https://github.com/dingkuiye/TimeMosaic">TimeMosaic</a>
-        </div>
-      </div>
     </div>
   </div>
 </nav>
@@ -87,7 +77,7 @@
           </a>
         </span>
         <span class="link-block">
-          <a href="https://github.com/dingkuiye/TimeMosaic" class="external-link button is-rounded is-dark">
+          <a href="https://github.com/BenchCouncil/TimeMosaic" class="external-link button is-rounded is-dark">
             <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
           </a>
         </span>
@@ -97,23 +87,9 @@
 </section>
 
 
-<!-- ================= CONCEPT FIGURE ================= -->
+<!-- ================= FRAMEWORK IMAGE ================= -->
 <section class="section">
   <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3">Concept Illustration</h2>
-    <figure>
-      <!-- 如果你想直接显示 PDF 的第一页，可换成截图 -->
-      <embed src="./static/images/ideas.pdf" type="application/pdf" width="100%" height="500px" />
-      <figcaption><em>Key concepts and motivation of TimeMosaic.</em></figcaption>
-    </figure>
-  </div>
-</section>
-
-
-<!-- ================= FRAMEWORK FIGURE ================= -->
-<section class="section">
-  <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3">Framework Overview</h2>
     <figure>
       <img src="./static/images/framework.png" alt="TimeMosaic framework" style="max-width:90%; border-radius:10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
       <figcaption><em>Overall architecture of the proposed TimeMosaic model.</em></figcaption>
@@ -122,18 +98,26 @@
 </section>
 
 
-<!-- ================= ABSTRACT ================= -->
+<!-- ================= INTRODUCTION ================= -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-centered">Abstract</h2>
+        <h2 class="title is-3 has-text-centered">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            <i>TimeMosaic</i> introduces a novel forecasting framework that explicitly addresses temporal heterogeneity in multivariate time series. Existing patch-based methods rely on fixed-length segmentation, assuming uniform information density across time, which leads to detail loss in complex regions and redundancy in stable intervals. To overcome these limitations, <i>TimeMosaic</i> proposes two key components: <b>Adaptive Patch Embedding (APE)</b> and <b>Segment-wise Decoding (SD)</b>. APE dynamically adjusts patch granularity based on local information density, balancing motif reuse and structural clarity while preserving temporal continuity. SD further models decoding heterogeneity by treating each prediction horizon as a distinct yet related subtask, implemented via <b>prompt-based tuning</b>, which allows horizon-specific adaptation without modifying shared encoder parameters.
+            <i>TimeMosaic</i> is a novel time-series forecasting framework that explicitly models <b>temporal heterogeneity</b>—the non-uniform information density across time. 
+            Traditional patch-based forecasting models divide sequences into <b>fixed-length patches</b>, implicitly assuming that all temporal regions carry equal complexity. 
+            This assumption leads to redundant encoding in stable regions and detail loss in volatile ones.
           </p>
           <p>
-            Extensive experiments on <b>17 real-world datasets</b> (covering domains such as electricity, weather, traffic, and wind) demonstrate that <i>TimeMosaic</i> achieves consistent state-of-the-art results in long-term forecasting. When trained on a <b>large-scale corpus containing 321 billion observations</b>, it attains performance comparable to leading time-series foundation models like <b>Chronos</b> and <b>TimesFM</b>, with far fewer parameters. Overall, <i>TimeMosaic</i> provides a unified, adaptive, and efficient solution for modeling heterogeneous temporal dynamics.
+            To address this limitation, <i>TimeMosaic</i> introduces the <b>first dynamic patch segmentation mechanism</b> in the field of time-series forecasting. 
+            The proposed <b>Adaptive Patch Embedding (APE)</b> adjusts patch granularity according to local temporal complexity, achieving a balance between representation efficiency and information fidelity. 
+            Meanwhile, the <b>Segment-wise Decoding (SD)</b> module models horizon-specific heterogeneity through <b>prompt-based tuning</b>, allowing each prediction step to adapt independently while maintaining global coherence.
+          </p>
+          <p>
+            Experiments on <b>17 real-world datasets</b> covering electricity, weather, traffic, and wind domains show that <i>TimeMosaic</i> achieves consistent state-of-the-art results. 
+            When trained on a <b>large-scale corpus with 321 billion observations</b>, it reaches performance comparable to foundation models like <b>Chronos</b> and <b>TimesFM</b>, but with significantly fewer parameters.
           </p>
         </div>
       </div>
